@@ -113,8 +113,8 @@ Cart** p = carts;
 
 for(int i = 0; i < 3; i++)
 {
-    cout << "Customer " << (p + i)->operator->()->id
-         << endl;
+    Cart* current = *(p + i);
+cout << "Customer " << current->id << endl;
 }
 
 return 0;
