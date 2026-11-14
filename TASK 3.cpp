@@ -1,3 +1,92 @@
+PART 1 – PASS VALUES TO BASE CONSTRUCTORS
+    
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person
+{
+protected:
+string name;
+int id;
+
+public:
+Person(string n, int i) : name(n), id(i)
+{
+cout << "Person constructor\n";
+}
+
+~Person()
+{
+    cout << "Person destructor\n";
+}
+};
+
+class Student : virtual public Person
+{
+protected:
+double cgpa;
+
+public:
+Student(string n, int i, double c)
+: Person(n, i), cgpa(c)
+{
+cout << "Student constructor\n";
+}
+
+~Student()
+{
+    cout << "Student destructor\n";
+}
+};
+
+class Staff : virtual public Person
+{
+protected:
+string department;
+double salary;
+
+public:
+Staff(string n, int i, string d, double s)
+: Person(n, i), department(d), salary(s)
+{
+cout << "Staff constructor\n";
+}
+
+~Staff()
+{
+    cout << "Staff destructor\n";
+}
+};
+
+class TeachingAssistant : public Student, public Staff
+{
+public:
+TeachingAssistant(string n, int i, double c,
+string d, double s)
+: Person(n, i),
+Student(n, i, c),
+Staff(n, i, d, s)
+{
+cout << "TeachingAssistant constructor\n";
+}
+
+~TeachingAssistant()
+{
+    cout << "TeachingAssistant destructor\n";
+}
+};
+
+int main()
+{
+TeachingAssistant ta("Ananya", 101, 8.5,
+"CSE", 30000);
+
+return 0;
+}
+
+PART 2 – MEMBER CLASSES
+    
 #include <iostream>
 #include <string>
 using namespace std;
